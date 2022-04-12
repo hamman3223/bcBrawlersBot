@@ -1,0 +1,7 @@
+{
+    "auth_token": {
+        "name": "session_token",
+        "value": "",
+        "domain": ".wax.io"
+    }
+}
