@@ -17,7 +17,7 @@ from auth.waxWallet import waxAuthorize, waxAuthorizationError
 
 from threading import Thread
 
-os_types = ['nt', 'posix']
+os_types = ['Windows', 'Linux', "Darwin"]
 
 buttons = {
     "play": "/html/body/div[1]/div/button/div",
@@ -39,11 +39,6 @@ buttons = {
     "continue": "/html/body/div[1]/div/div[2]/div[2]/div/div[3]/button/div",
 }
 
-keystrokes = {
-    "slider": Keys.TAB * 2,
-    "slider_alternative": Keys.TAB * 5,
-}
-
 
 def getDriver(os_type: str, options):
 
@@ -60,6 +55,11 @@ def getDriver(os_type: str, options):
 
     )
     if os_type == os_types[1]: return webdriver.Firefox(
+        options=options,
+        executable_path=path_join(os.getcwd(), "drivers", "geckodriver_linux"),
+        service_log_path=os.devnull,
+    )
+    if os_type == os_types[2]: return webdriver.Firefox(
         options=options,
         executable_path=path_join(os.getcwd(), "drivers", "geckodriver_macos"),
         service_log_path=os.devnull,
