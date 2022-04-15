@@ -54,22 +54,30 @@ class Heal():
                 xpath=button,
             )
 
-            heal_struct.ratio = list(map(float, heal_ratio.split('/')))
+            if heal_ratio:
 
-            print(heal_struct.ratio)
+                heal_struct.ratio = list(map(float, heal_ratio.split('/')))
+
+                print(heal_struct.ratio)
+
+                return True
+            return False
+
 
     def run(self):
 
         while True:
 
-                Heal.getRatio(
+
+                if Heal.getRatio(
                     heal_struct=self.heal_struct,
                     driver=self.driver,
                     button=self.buttons["heal-ratio"]
-                )
+                ):
 
-                Heal.checkForHeal(
-                    driver=self.driver,
-                    buttons=self.buttons,
-                    ratio=self.heal_struct.ratio,
-            )
+
+                    Heal.checkForHeal(
+                        driver=self.driver,
+                        buttons=self.buttons,
+                        ratio=self.heal_struct.ratio,
+                )
