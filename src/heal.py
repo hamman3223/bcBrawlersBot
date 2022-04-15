@@ -23,7 +23,7 @@ class Heal():
 
     @staticmethod
     def do_heal(driver, buttons):
-        
+
             click_by_xpath(
                 driver=driver,
                 xpath=buttons['heal-logo'],
