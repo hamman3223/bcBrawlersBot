@@ -72,9 +72,6 @@ if __name__ == "__main__":
 
         heal_info = HealInfo()
 
-        os_types = ['nt', 'posix']
-
-
         options = Options()
         options.headless = True
         driver = getDriver(
