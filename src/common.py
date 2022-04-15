@@ -2,7 +2,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium import webdriver
-from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
+from selenium.common.exceptions import\
+    TimeoutException, ElementClickInterceptedException
 
 
 def click_by_xpath(driver: webdriver, xpath: str, timeout: int = 10)\
@@ -32,11 +33,12 @@ def click_by_xpath(driver: webdriver, xpath: str, timeout: int = 10)\
 
     except TimeoutException as timeout:
 
-        pass
+        print("Got timeout")
 
     except ElementClickInterceptedException as NotClickable:
 
         pass
+
 
 def get_element_text(driver: webdriver, xpath: str, timeout: int = 10):
 
@@ -54,4 +56,25 @@ def get_element_text(driver: webdriver, xpath: str, timeout: int = 10):
         return inited_button.text
 
     except TimeoutException as timeout:
-        pass
+
+        return False
+
+
+def check_element_existence(driver: webdriver, xpath: str, timeout: int = 10):
+
+    try:
+
+        inited_button = WebDriverWait(
+            driver=driver,
+            timeout=timeout,
+        ).until(
+            EC.presence_of_element_located((
+                By.XPATH, xpath
+            ))
+        )
+
+        return True
+
+    except Exception:
+
+        return False

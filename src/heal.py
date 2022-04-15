@@ -1,5 +1,5 @@
-from src.common import click_by_xpath, get_element_text
-from selenium.common.exceptions import NoSuchElementException
+from src.common import click_by_xpath,\
+    get_element_text, check_element_existence
 
 
 class Heal():
@@ -23,6 +23,11 @@ class Heal():
 
     @staticmethod
     def do_heal(driver, buttons):
+
+        if check_element_existence(
+            driver=driver,
+            xpath=buttons["heal-logo"],
+        ):
 
             click_by_xpath(
                 driver=driver,
@@ -49,35 +54,33 @@ class Heal():
     @staticmethod
     def getRatio(heal_struct, driver, button):
 
-            heal_ratio = get_element_text(
-                driver=driver,
-                xpath=button,
-            )
+        heal_ratio = get_element_text(
+            driver=driver,
+            xpath=button,
+        )
 
-            if heal_ratio:
+        if heal_ratio:
 
-                heal_struct.ratio = list(map(float, heal_ratio.split('/')))
+            heal_struct.ratio = list(map(float, heal_ratio.split('/')))
 
-                print(heal_struct.ratio)
+            print(heal_struct.ratio)
 
-                return True
-            return False
+            return True
 
+        return False
 
     def run(self):
 
         while True:
 
+            if Heal.getRatio(
+                heal_struct=self.heal_struct,
+                driver=self.driver,
+                button=self.buttons["heal-ratio"]
+            ):
 
-                if Heal.getRatio(
-                    heal_struct=self.heal_struct,
+                Heal.checkForHeal(
                     driver=self.driver,
-                    button=self.buttons["heal-ratio"]
-                ):
-
-
-                    Heal.checkForHeal(
-                        driver=self.driver,
-                        buttons=self.buttons,
-                        ratio=self.heal_struct.ratio,
+                    buttons=self.buttons,
+                    ratio=self.heal_struct.ratio,
                 )

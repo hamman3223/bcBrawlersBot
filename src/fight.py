@@ -64,5 +64,5 @@ class Fight():
                 xpath=self.buttons['continue'],
                 timeout=20
             )
-            
+
             print("I got into a fight!!")
