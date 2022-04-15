@@ -75,7 +75,8 @@ if __name__ == "__main__":
         options = Options()
         options.headless = True
         driver = getDriver(
-            os_type=check_os(os_types=os_types)
+            os_type=check_os(os_types=os_types),
+            options=options,
         )
 
         waxAuthorize(
