@@ -23,23 +23,28 @@ class Heal():
 
     @staticmethod
     def do_heal(driver, buttons):
+        try:
 
-        if check_element_existence(
-            driver=driver,
-            xpath=buttons["heal-logo"],
-        ):
-
-            click_by_xpath(
+            if check_element_existence(
                 driver=driver,
-                xpath=buttons['heal-logo'],
-                timeout=10
-            )
+                xpath=buttons["heal-logo"],
+            ):
 
-            click_by_xpath(
-                driver=driver,
-                xpath=buttons['heal-now'],
-                timeout=10
-            )
+                click_by_xpath(
+                    driver=driver,
+                    xpath=buttons['heal-logo'],
+                    timeout=10
+                )
+
+                click_by_xpath(
+                    driver=driver,
+                    xpath=buttons['heal-now'],
+                    timeout=10
+                )
+
+        except Exception as globalException:
+
+            driver.refresh()
 
     @staticmethod
     def checkForHeal(driver, buttons, ratio):

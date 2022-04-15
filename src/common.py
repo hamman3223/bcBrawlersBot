@@ -39,6 +39,10 @@ def click_by_xpath(driver: webdriver, xpath: str, timeout: int = 10)\
 
         pass
 
+    except Exception as globalException:
+
+        pass
+
 
 def get_element_text(driver: webdriver, xpath: str, timeout: int = 10):
 
