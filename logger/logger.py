@@ -43,7 +43,6 @@ class Logger():
         self.logger = logger
 
 
-
 logger = Logger().logger
 logger.debug('sd')
 logger.error('sasd')

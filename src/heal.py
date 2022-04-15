@@ -25,10 +25,13 @@ class Heal():
     def do_heal(driver, buttons):
         try:
 
-            if check_element_existence(
+            heal_logo = check_element_existence(
                 driver=driver,
                 xpath=buttons["heal-logo"],
-            ):
+            )
+
+            if not driver.find_element_by_css_selector('.sc-fmrZth') \
+                    and heal_logo:
 
                 click_by_xpath(
                     driver=driver,

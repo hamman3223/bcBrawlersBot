@@ -40,7 +40,7 @@ buttons = {
 }
 
 
-def getDriver(os_type: str, options):
+def getDriver(os_type: str, options=None):
 
     '''
     Argument: Take returned variable from check_os "posix" or "nt"
@@ -75,8 +75,7 @@ if __name__ == "__main__":
         options = Options()
         options.headless = True
         driver = getDriver(
-            os_type=check_os(os_types=os_types),
-            options=options,
+            os_type=check_os(os_types=os_types)
         )
 
         waxAuthorize(
