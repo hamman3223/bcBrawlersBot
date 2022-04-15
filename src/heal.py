@@ -45,6 +45,8 @@ class Heal():
                     timeout=10
                 )
 
+                print('Brawler healed')
+
         except Exception as globalException:
 
             driver.refresh()
@@ -70,8 +72,6 @@ class Heal():
         if heal_ratio:
 
             heal_struct.ratio = list(map(float, heal_ratio.split('/')))
-
-            print(heal_struct.ratio)
 
             return True
 
