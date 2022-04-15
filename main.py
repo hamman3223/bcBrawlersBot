@@ -81,7 +81,6 @@ if __name__ == "__main__":
 
         waxAuthorize(
             driver=driver,
-            keystrokes=keystrokes,
             buttons=buttons,
         )
 
@@ -89,14 +88,13 @@ if __name__ == "__main__":
 
         bcBrawAuthorize(
             driver=driver,
-            keystrokes=keystrokes,
             buttons=buttons,
         )
 
         ''' Put Heal logic into single thread '''
 
         heal = Thread(target=Heal,
-                      args=(heal_info, driver, keystrokes, buttons),
+                      args=(heal_info, driver, buttons),
                       )
 
         fight = Thread(target=Fight,

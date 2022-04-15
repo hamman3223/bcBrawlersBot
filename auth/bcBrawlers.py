@@ -3,10 +3,9 @@ from src.common import click_by_xpath
 
 class bcBrawAuthorize():
 
-    def __init__(self, driver, keystrokes, buttons):
+    def __init__(self, driver, buttons):
 
         self.driver = driver
-        self.keystrokes = keystrokes
         self.buttons = buttons
         self.run()
 

@@ -4,7 +4,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 class Heal():
 
-    def __init__(self, heal_struct, driver, keystrokes, buttons):
+    def __init__(self, heal_struct, driver, buttons):
 
         """
             Args:
@@ -18,7 +18,6 @@ class Heal():
 
         self.heal_struct = heal_struct
         self.driver = driver
-        self.keystrokes = keystrokes
         self.buttons = buttons
         self.run()
 

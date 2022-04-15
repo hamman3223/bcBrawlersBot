@@ -16,10 +16,9 @@ class waxAuthorizationError(Exception):
 
 class waxAuthorize():
 
-    def __init__(self, driver, keystrokes, buttons):
+    def __init__(self, driver, buttons):
 
         self.driver = driver
-        self.keystrokes = keystrokes
         self.buttons = buttons
 
         ''' Load auth token from authorization.json
