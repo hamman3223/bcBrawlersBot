@@ -7,9 +7,9 @@ from selenium import webdriver
 from structs.heal import HealInfo
 
 class Heal():
-    
+
     def __init__(self, heal_struct, driver, buttons):
-    
+
         """
             Args:
 
@@ -58,7 +58,7 @@ class Heal():
                     driver.refresh()
 
         except Exception as globalException:
-            
+
             print(f"Some troubles with do_heal() func {globalException}")
 
             pass
@@ -68,7 +68,7 @@ class Heal():
         -> None:
 
         if (ratio[1] - ratio[0]) <= 150:
-            
+
             # Revoke function do_heal() if heal points less or equal than 150
             Heal.do_heal(
                 driver=driver,

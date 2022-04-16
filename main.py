@@ -89,7 +89,7 @@ if __name__ == "__main__":
         driver = getDriver(
             os_type=check_os(os_types=os_types),
             profile=profile,
-            options=None,
+            options=options,
         )
 
         waxAuthorize(

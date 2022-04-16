@@ -1,6 +1,8 @@
 src/__pycache__
 .vscode
 auth/__pycache__
+logger/__pycache__
+structs/__pycache__
 .DS_Store
 tox.ini
 authorization.json
