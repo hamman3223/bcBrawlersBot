@@ -3,6 +3,7 @@ from os.path import join as path_join
 
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
+from selenium.webdriver import FirefoxProfile
 
 from selenium.webdriver.firefox.options import Options
 
@@ -20,15 +21,17 @@ from threading import Thread
 os_types = ['Windows', 'Linux', "Darwin"]
 
 buttons = {
+
     "play": "/html/body/div[1]/div/button/div",
+    "continue": "/html/body/div[1]/div/div[2]/div[2]/div/div[3]/button/div",
 
     "heal-ratio": "/html/body/div[1]/div/div[2]/div[1]/div[4]/div[2]/div[2]/span",
-
     "heal-logo": "/html/body/div[1]/div/div[2]/div[1]/div[2]/div[1]/img",
     "heal-now": "/html/body/div[1]/div/div[2]/div[2]/div/div[4]/button/div",
+
     "login": "/html/body/div[1]/div/button/div",
-    "billing": "/html/body/div/div/div[1]/div[1]/div[1]",
     "wax_cloud_login": "/html/body/div[1]/div[1]/div/div[2]/div[1]/div[2]",
+    "billing": "/html/body/div/div/div[1]/div[1]/div[1]",
 
     "go-brawl": "/html/body/div[1]/div/"
     "div[2]/div[1]/div[4]/div[3]/button[2]/div",
@@ -36,11 +39,11 @@ buttons = {
     "go-brawl-timeout": "/html/body/div[1]/div/"
     "div[2]/div[1]/div[4]/div[3]/div",
 
-    "continue": "/html/body/div[1]/div/div[2]/div[2]/div/div[3]/button/div",
 }
 
 
-def getDriver(os_type: str, options=None):
+def getDriver(profile: FirefoxProfile, os_type: str, options: Options =None) \
+    -> webdriver.Firefox:
 
     '''
     Argument: Take returned variable from check_os "posix" or "nt"
@@ -52,17 +55,20 @@ def getDriver(os_type: str, options=None):
         options=options,
         executable_path=path_join(os.getcwd(), "drivers", "geckodriver.exe"),
         service_log_path=os.devnull,
+        firefox_profile=profile,
 
     )
     if os_type == os_types[1]: return webdriver.Firefox(
         options=options,
         executable_path=path_join(os.getcwd(), "drivers", "geckodriver_linux"),
         service_log_path=os.devnull,
+        firefox_profile=profile,
     )
     if os_type == os_types[2]: return webdriver.Firefox(
         options=options,
         executable_path=path_join(os.getcwd(), "drivers", "geckodriver_macos"),
         service_log_path=os.devnull,
+        firefox_profile=profile,
     )
 
 
@@ -71,12 +77,19 @@ if __name__ == "__main__":
     try:
 
         heal_info = HealInfo()
+        
+        # Turn OFF sound volume
+        profile = webdriver.FirefoxProfile()
+        profile.set_preference("media.volume_scale", "0.0")
 
+        # Turn ON headless mode
         options = Options()
         options.headless = True
+
         driver = getDriver(
             os_type=check_os(os_types=os_types),
-            options=options,
+            profile=profile,
+            options=None,
         )
 
         waxAuthorize(

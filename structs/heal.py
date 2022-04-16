@@ -1,8 +1,6 @@
 class HealInfo():
 
-    """
-        ratio(list)
-    """
+    ''' Heal structure '''
 
     __slots__ = "ratio"
 

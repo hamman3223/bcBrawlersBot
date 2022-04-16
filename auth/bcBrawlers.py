@@ -1,9 +1,11 @@
 from src.common import click_by_xpath
 
+from selenium import webdriver
+
 
 class bcBrawAuthorize():
 
-    def __init__(self, driver, buttons):
+    def __init__(self, driver: webdriver, buttons: dict):
 
         self.driver = driver
         self.buttons = buttons

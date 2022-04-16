@@ -1,6 +1,9 @@
 import json
 import os
+
 from src.common import click_by_xpath
+
+from selenium import webdriver
 
 
 ''' Custom exception to infrom about invalid token '''
@@ -16,7 +19,8 @@ class waxAuthorizationError(Exception):
 
 class waxAuthorize():
 
-    def __init__(self, driver, buttons):
+    def __init__(self, driver: webdriver, buttons: dict) \
+        -> None:
 
         self.driver = driver
         self.buttons = buttons
@@ -33,7 +37,7 @@ class waxAuthorize():
 
         self.run()
 
-    def run(self):
+    def run(self) -> bool:
 
         self.driver.get("https://wallet.wax.io")
         self.driver.add_cookie(

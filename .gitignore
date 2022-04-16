@@ -4,3 +4,5 @@ auth/__pycache__
 .DS_Store
 tox.ini
 authorization.json
+Pipfile
+Pipfile.lock
